@@ -4,6 +4,7 @@ import tseslint from 'typescript-eslint'
 import pluginReact from 'eslint-plugin-react'
 import css from '@eslint/css'
 import { defineConfig } from 'eslint/config'
+import reactHooks from 'eslint-plugin-react-hooks'
 
 export default defineConfig([
   {
@@ -14,6 +15,7 @@ export default defineConfig([
   },
   tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
+  reactHooks.configs['recommended-latest'],
   {
     files: ['**/*.css'],
     plugins: { css },
