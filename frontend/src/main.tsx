@@ -4,6 +4,7 @@ import './assets/main.css'
 import { createRouter, RouterProvider } from '@tanstack/react-router'
 import { routeTree } from './routeTree.gen'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ThemeProvider, useTheme } from './shared/providers/theme.provider'
 
 const queryClient = new QueryClient()
 
@@ -12,7 +13,7 @@ const router = createRouter({
   defaultPreload: 'intent',
   scrollRestoration: true,
   context: {
-    auth: undefined!,
+    theme: undefined!,
     queryClient,
   },
 })
@@ -24,13 +25,16 @@ declare module '@tanstack/react-router' {
 }
 
 function InnerApp() {
-  return <RouterProvider router={router} context={{}} />
+  const theme = useTheme()
+  return <RouterProvider router={router} context={{ theme, queryClient }} />
 }
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <InnerApp />
+      <ThemeProvider>
+        <InnerApp />
+      </ThemeProvider>
     </QueryClientProvider>
   )
 }

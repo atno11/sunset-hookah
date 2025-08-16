@@ -10,7 +10,7 @@ interface ThemeProviderProps {
   themeStorageKey?: string
 }
 
-interface ThemeProvider {
+export interface ThemeProvider {
   getMode: () => ModesEnum
   setMode: React.Dispatch<React.SetStateAction<ModesEnum>>
   getTheme: () => ThemesEnum
